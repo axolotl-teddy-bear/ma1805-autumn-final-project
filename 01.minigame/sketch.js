@@ -22,7 +22,7 @@ function setup() {
 
 function draw() {
   background(220);
-  //image(asset1, width, height);
+  image(asset1, width, height);
   circle(200, 200, 300);
   fill(0);
   circle(200, 200, 160);
