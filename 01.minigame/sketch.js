@@ -39,12 +39,12 @@ function draw() {
   if (mouseIsPressed) {
     push();
     translate(0, -85)
-    image(asset2, mouseX, mouseY, 400, 450)
+    image(asset2, mouseX, mouseY, 400, 500)
     pop();
   } else {
     push();
     translate(0, -85)
-    image(asset3, mouseX, mouseY, 400, 450)
+    image(asset3, mouseX, mouseY, 400, 500)
     pop();
   }
 
