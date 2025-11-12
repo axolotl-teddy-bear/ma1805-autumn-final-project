@@ -4,14 +4,15 @@ let obj_pos = [];
 
 function setup() {
   createCanvas(400, 400);
-  asset1 = loadImage("assets/bg.PNG")
-  asset2 = loadImage("assets/hand_close.PNG")
-  asset3 = loadImage("assets/hand_open.PNG")
-  asset4 = loadImage("assets/leaf01.PNG")
-  asset5 = loadImage("assets/leaf02.PNG")
-  asset6 = loadImage("assets/leaf03.PNG")
-  asset7 = loadImage("assets/leaf04.PNG")
-  asset8 = loadImage("assets/leaf05.PNG")
+  asset1 = loadImage("assets/bg.PNG");
+  asset2 = loadImage("assets/hand_close.PNG");
+  asset3 = loadImage("assets/hand_open.PNG");
+  asset4 = loadImage("assets/leaf01.PNG");
+  asset5 = loadImage("assets/leaf02.PNG");
+  asset6 = loadImage("assets/leaf03.PNG");
+  asset7 = loadImage("assets/leaf04.PNG");
+  asset8 = loadImage("assets/leaf05.PNG");
+
   let obj_num = floor(random(5, 12));
   for (let i = 0; i < obj_num; i++) {   //generate the amount of objs needed
     gen_obj(); // generate each object up to selected amount
@@ -21,6 +22,7 @@ function setup() {
 
 function draw() {
   background(220);
+  //image(asset1, width, height);
   circle(200, 200, 300);
   fill(0);
   circle(200, 200, 160);
