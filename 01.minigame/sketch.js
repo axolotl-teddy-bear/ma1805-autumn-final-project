@@ -15,7 +15,6 @@ function preload() {
 
 function setup() {
   createCanvas(1000, 750);
-
   let obj_num = floor(random(5, 12));
   for (let i = 0; i < obj_num; i++) {   //generate the amount of objs needed
     gen_obj(); // generate each object up to selected amount
@@ -25,7 +24,7 @@ function setup() {
 
 function draw() {
   background(220);
-  image(asset1, 0, 0, 1000, 750);
+  //image(asset1, 0, 0, 1000, 750); //table asset
   circle(200, 200, 300);
   fill(0);
   circle(200, 200, 160);
@@ -38,9 +37,15 @@ function draw() {
   //makes the image change when the mouse is pressed
   fill(255);
   if (mouseIsPressed) {
-    rect(mouseX, mouseY, 50, 60);
+    push();
+    translate(0, -85)
+    image(asset2, mouseX, mouseY, 400, 450)
+    pop();
   } else {
-    circle(mouseX, mouseY, 50);
+    push();
+    translate(0, -85)
+    image(asset3, mouseX, mouseY, 400, 450)
+    pop();
   }
 
   
