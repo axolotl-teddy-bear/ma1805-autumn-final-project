@@ -29,11 +29,6 @@ function setup() {
 function draw() {
   background(220);
   image(asset1, 0, 0, 1000, 750); //table asset
-  //circle(200, 200, 300);
-  //fill(0);
-  //circle(500, 375, 400);
-
-  //the section below that draws the objs are based off of the 03.multiples project i did for the last assignment. 
 
   for (let i = 0; i < shapes.length; i++) { //drawing objs
     const shape = shapes[i];
@@ -41,7 +36,7 @@ function draw() {
     shape.update();
     shape.show();
 
-    // keep obj_pos in sync with the draggable position 
+    // keep obj_pos in sync with the draggables position 
     obj_pos[i].x = shape.x;
     obj_pos[i].y = shape.y;
   }
