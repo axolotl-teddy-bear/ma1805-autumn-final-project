@@ -15,8 +15,8 @@ function preload() {
 
 function setup() {
   createCanvas(1000, 750);
-  let obj_num = floor(random(5, 12));
-  for (let i = 0; i < obj_num; i++) {   //generate the amount of objs needed
+  let obj_amt = floor(random(5, 12));
+  for (let i = 0; i < obj_amt; i++) {   //generate the amount of objs needed
     gen_obj(); // generate each object up to selected amount
   //When I was trying to make the objects draggablet, I found the process to be very confusing because my objects are stored in an array. to use the draggable() function (as seen in the ma1805 repository examples) i need an element that is an object.
    shapes = new Draggable(obj_pos[i].x, obj_pos[i].y, 50, 50);
@@ -56,20 +56,17 @@ class Draggable {
   
     show() {
       stroke(0);
-      for (let obj of obj_pos) { //drawing objs
-      if (obj.amt == 1) {
-        image(asset4, obj.x, obj.y, 50, 50);
-      } else if (obj.amt == 2) {
-        image(asset5, obj.x, obj.y, 50, 50);
-      } else if (obj.amt == 3) {
-        image(asset6, obj.x, obj.y, 50, 50);
-      } else if (obj.amt == 4) {
-        image(asset7, obj.x, obj.y, 50, 50);
-      } else if (obj.amt == 5) {
-        image(asset8, obj.x, obj.y, 50, 50);
+      image(asset4, this.x, this.y, 50, 50);
+      
+      if (this.dragging) {
+        fill(50);
+      } else if (this.rollover) {
+        fill(100);
+      } else {
+        fill(175, 200);
       }
+      rect(this.x, this.y, this.w, this.h);
     }
-  }
   
     pressed() {
       // Did I click on the rectangle?
@@ -115,7 +112,8 @@ function draw() {
     image(asset3, mouseX, mouseY, 400, 500)
     pop();
   }
-    */
+  */
+
 
   
 
@@ -131,6 +129,6 @@ function mouseReleased() {
 function gen_obj() { //generates random position then adds then into the array
   x_pos = random(320, 650);
   y_pos = random(200, 525);
-  obj_amt = floor(random(1, 6));
-  obj_pos.push({ x: x_pos, y: y_pos, amt: obj_amt }); //makes the objs in the array draggables
+  obj_num = floor(random(1, 6));
+  obj_pos.push({ x: x_pos, y: y_pos, num: obj_num }); 
 }
