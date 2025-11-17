@@ -32,6 +32,15 @@ class Draggable {
     show() {
       stroke(0);
       image(asset4, this.x, this.y, 50, 50);
+      
+      if (this.dragging) {
+        fill(50);
+      } else if (this.rollover) {
+        fill(100);
+      } else {
+        fill(175, 200);
+      }
+      rect(this.x, this.y, this.w, this.h);
     }
   
     pressed() {
