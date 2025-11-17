@@ -18,20 +18,36 @@ function setup() {
   let obj_num = floor(random(5, 12));
   for (let i = 0; i < obj_num; i++) {   //generate the amount of objs needed
     gen_obj(); // generate each object up to selected amount
-  //When I was trying to make the objects draggablet, I found the process to be very confusing because my objects are stored in an array. to use the draggable() function (as seen in the ma1805 repository examples) i need an element that is an object. 
+  //When I was trying to make the objects draggablet, I found the process to be very confusing because my objects are stored in an array. to use the draggable() function (as seen in the ma1805 repository examples) i need an element that is an object.
+   shapes = new Draggable(obj_pos[i].x, obj_pos[i].y, 50, 50);
   }
 }
 
 function draw() {
   background(220);
   image(asset1, 0, 0, 1000, 750); //table asset
-  circle(200, 200, 300);
-  fill(0);
-  circle(200, 200, 160);
+  //circle(200, 200, 300);
+  //fill(0);
+  //circle(500, 375, 400);
+
+  //the section below that draws the objs are based off of the 03.multiples project i did for the last assignment. 
 
   for (let obj of obj_pos) { //drawing objs
-    fill(255, 0, 0);
-    circle(obj.x, obj.y, 20);
+    if (obj.amt == 1) {
+      image(asset4, obj.x, obj.y, 50, 50);
+    } else if (obj.amt == 2) {
+      image(asset5, obj.x, obj.y, 50, 50);
+    } else if (obj.amt == 3) {
+      image(asset6, obj.x, obj.y, 50, 50);
+    } else if (obj.amt == 4) {
+      image(asset7, obj.x, obj.y, 50, 50);
+    } else if (obj.amt == 5) {
+      image(asset8, obj.x, obj.y, 50, 50);
+    }
+
+    shapes.over();
+    shapes.update();
+    shapes.show();
   }
 
   //makes the image change when the mouse is pressed
@@ -51,8 +67,17 @@ function draw() {
   
 }
 
+function mousePressed() {
+  shapes.pressed();
+}
+
+function mouseReleased() {
+  shapes.released();
+}
+
 function gen_obj() { //generates random position then adds then into the array
-  x_pos = random(145, 255);
-  y_pos = random(145, 255);
-  obj_pos.push({ x: x_pos, y: y_pos }); //makes the objs in the array draggables
+  x_pos = random(320, 650);
+  y_pos = random(200, 525);
+  obj_amt = floor(random(1, 6));
+  obj_pos.push({ x: x_pos, y: y_pos, amt: obj_amt }); //makes the objs in the array draggables
 }
