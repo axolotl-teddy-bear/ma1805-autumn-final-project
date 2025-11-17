@@ -1,6 +1,7 @@
 let x_pos;
 let y_pos;
 let obj_pos = [];
+let shapes = [];
 
 function preload() {
   asset1 = loadImage("assets/bg.PNG");
@@ -19,7 +20,9 @@ function setup() {
   for (let i = 0; i < obj_num; i++) {   //generate the amount of objs needed
     gen_obj(); // generate each object up to selected amount
   //When I was trying to make the objects draggablet, I found the process to be very confusing because my objects are stored in an array. to use the draggable() function (as seen in the ma1805 repository examples) i need an element that is an object.
-   shapes = new Draggable(obj_pos[i].x, obj_pos[i].y, 50, 50);
+    const obj = obj_pos[i];
+    const leafImg = getLeafAsset(obj.amt);
+    shapes.push(new Draggable(obj.x, obj.y, 50, 50, leafImg));
   }
 }
 
@@ -32,22 +35,15 @@ function draw() {
 
   //the section below that draws the objs are based off of the 03.multiples project i did for the last assignment. 
 
-  for (let obj of obj_pos) { //drawing objs
-    if (obj.amt == 1) {
-      image(asset4, obj.x, obj.y, 50, 50);
-    } else if (obj.amt == 2) {
-      image(asset5, obj.x, obj.y, 50, 50);
-    } else if (obj.amt == 3) {
-      image(asset6, obj.x, obj.y, 50, 50);
-    } else if (obj.amt == 4) {
-      image(asset7, obj.x, obj.y, 50, 50);
-    } else if (obj.amt == 5) {
-      image(asset8, obj.x, obj.y, 50, 50);
-    }
+  for (let i = 0; i < shapes.length; i++) { //drawing objs
+    const shape = shapes[i];
+    shape.over();
+    shape.update();
+    shape.show();
 
-    shapes.over();
-    shapes.update();
-    shapes.show();
+    // keep obj_pos in sync with the draggable position 
+    obj_pos[i].x = shape.x;
+    obj_pos[i].y = shape.y;
   }
 
   //makes the image change when the mouse is pressed
@@ -62,17 +58,21 @@ function draw() {
     translate(0, -85)
     image(asset3, mouseX, mouseY, 400, 500)
     pop();
-  }
-
-  
+  } 
 }
 
 function mousePressed() {
-  shapes.pressed();
+  // iterate backwards so the topmost leaf gets priority
+  for (let i = shapes.length - 1; i >= 0; i--) {
+    shapes[i].pressed();
+    if (shapes[i].dragging) break;
+  }
 }
 
 function mouseReleased() {
-  shapes.released();
+  for (const shape of shapes) {
+    shape.released();
+  }
 }
 
 function gen_obj() { //generates random position then adds then into the array
@@ -80,4 +80,20 @@ function gen_obj() { //generates random position then adds then into the array
   y_pos = random(200, 525);
   obj_amt = floor(random(1, 6));
   obj_pos.push({ x: x_pos, y: y_pos, amt: obj_amt }); //makes the objs in the array draggables
+}
+
+function getLeafAsset(amount) {
+  switch (amount) {
+    case 1:
+      return asset4;
+    case 2:
+      return asset5;
+    case 3:
+      return asset6;
+    case 4:
+      return asset7;
+    case 5:
+    default:
+      return asset8;
+  }
 }
