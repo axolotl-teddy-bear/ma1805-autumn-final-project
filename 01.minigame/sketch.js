@@ -24,7 +24,7 @@ function setup() {
 
 function draw() {
   background(220);
-  //image(asset1, 0, 0, 1000, 750); //table asset
+  image(asset1, 0, 0, 1000, 750); //table asset
   circle(200, 200, 300);
   fill(0);
   circle(200, 200, 160);
