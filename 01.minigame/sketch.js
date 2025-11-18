@@ -22,7 +22,7 @@ function setup() {
   //When I was trying to make the objects draggablet, I found the process to be very confusing because my objects are stored in an array. to use the draggable() function (as seen in the ma1805 repository examples) i need an element that is an object.
     const obj = obj_pos[i];
     const leafImg = getLeafAsset(obj.amt);
-    shapes.push(new Draggable(obj.x, obj.y, 50, 50, leafImg));
+    shapes.push(new Draggable(obj.x, obj.y, 50, 50, leafImg)); //making the objects draggable was the most frustrating element to add in this game. Especially when i want the positions and images of the leafs to be random, it took me a long time to figure out 
   }
 }
 
