@@ -3,7 +3,7 @@ let y_pos;
 let obj_pos = [];
 let shapes = [];
 
-let sec_limit = 7;
+let sec_limit = 10;
 let sec_left;
 let milis_limit = 7000; //1000milis is a second
 
@@ -31,10 +31,13 @@ function setup() {
     shapes.push(new Draggable(obj.x, obj.y, 50, 50, leafImg)); //making the objects draggable was the most frustrating element to add in this game. Especially when i want the positions and images of the leafs to be random, it took me a long time to figure out 
   }
   noCursor() //makes the cursor disappear
-  //soundtrack.play();
+  soundtrack.play();
 }
 
 function draw() {
+  audio_sp = millis() / 100000
+  soundtrack.rate(1+audio_sp)
+
   background(220);
   image(asset1, 0, 0, 1000, 750); //table asset
   //circle(500, 380, 590) // outer plate area
