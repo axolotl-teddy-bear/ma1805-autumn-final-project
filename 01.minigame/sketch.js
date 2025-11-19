@@ -13,7 +13,7 @@ function preload() {
   asset7 = loadImage("assets/images/leaf04.PNG");
   asset8 = loadImage("assets/images/leaf05.PNG");
 
-  soundtrack = loadSound()
+  //soundtrack = loadSound()
 }
 
 function setup() {
