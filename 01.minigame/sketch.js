@@ -3,6 +3,10 @@ let y_pos;
 let obj_pos = [];
 let shapes = [];
 
+let sec_limit = 7;
+let sec_left;
+let milis_limit = 7000; //1000milis is a second
+
 function preload() {
   asset1 = loadImage("assets/images/bg.PNG");
   asset2 = loadImage("assets/images/hand_close.PNG");
@@ -13,7 +17,7 @@ function preload() {
   asset7 = loadImage("assets/images/leaf04.PNG");
   asset8 = loadImage("assets/images/leaf05.PNG");
 
-  //soundtrack = loadSound()
+  soundtrack = loadSound("assets/audios/bg_music.wav")
 }
 
 function setup() {
@@ -27,6 +31,7 @@ function setup() {
     shapes.push(new Draggable(obj.x, obj.y, 50, 50, leafImg)); //making the objects draggable was the most frustrating element to add in this game. Especially when i want the positions and images of the leafs to be random, it took me a long time to figure out 
   }
   noCursor() //makes the cursor disappear
+  //soundtrack.play();
 }
 
 function draw() {
@@ -34,6 +39,7 @@ function draw() {
   image(asset1, 0, 0, 1000, 750); //table asset
   //circle(500, 380, 590) // outer plate area
 
+  //CILANTRO GEN
   for (let i = 0; i < shapes.length; i++) { //drawing objs
     const shape = shapes[i];
     shape.over();
@@ -45,6 +51,7 @@ function draw() {
     obj_pos[i].y = shape.y;
   }
 
+  //CURSOR
   //makes the image change when the mouse is pressed
   fill(255);
   if (mouseIsPressed) {
@@ -58,10 +65,23 @@ function draw() {
     image(asset3, mouseX, mouseY, 400, 500)
     pop();
   } 
+
+  //TIMER
+  //reference link: https://editor.p5js.org/rainbowlazer/sketches/7UMxWVXyV
+  sec_left = milis_limit - millis();
+  if (sec_left >= 0) {
+    sec_left = sec_left/1000
+    push()
+    fill('yellow');
+    rect(30, 30, sec_left * 900/sec_limit, 30 );
+    pop();
+  } else if (sec_left < 0) {
+    endGame()
+  }
 }
 
+// top leaf moves first
 function mousePressed() {
-  // iterate backwards so the topmost leaf gets priority
   for (let i = shapes.length - 1; i >= 0; i--) {
     shapes[i].pressed();
     if (shapes[i].dragging) break;
@@ -95,4 +115,15 @@ function getLeafAsset(amount) {
     default:
       return asset8;
   }
+}
+
+function endGame() {
+  fill(127, 127)
+  rect(0, 0, 1000, 750)
+  fill(0)
+  textAlign(CENTER)
+  textSize(100);
+  text("You lose :(", 500, 375)
+  noCursor() = false
+  endGame()
 }
