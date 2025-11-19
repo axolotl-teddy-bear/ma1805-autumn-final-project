@@ -17,7 +17,8 @@ function preload() {
   asset7 = loadImage("assets/images/leaf04.PNG");
   asset8 = loadImage("assets/images/leaf05.PNG");
 
-  soundtrack = loadSound("assets/audios/bg_music.wav")
+  sound1 = loadSound("assets/audios/bg_music.wav");
+  sound2 = loadSound("assets/audios/fail.mp3");
 }
 
 function setup() {
@@ -31,12 +32,12 @@ function setup() {
     shapes.push(new Draggable(obj.x, obj.y, 50, 50, leafImg)); //making the objects draggable was the most frustrating element to add in this game. Especially when i want the positions and images of the leafs to be random, it took me a long time to figure out 
   }
   noCursor() //makes the cursor disappear
-  soundtrack.play();
+  sound1.play();
 }
 
 function draw() {
-  audio_sp = millis() / 50000
-  soundtrack.rate(1+audio_sp)
+  audio_sp = millis() / 40000
+  sound1.rate(1+audio_sp)
 
   background(220);
   image(asset1, 0, 0, 1000, 750); //table asset
@@ -127,6 +128,5 @@ function endGame() {
   textAlign(CENTER)
   textSize(100);
   text("You lose :(", 500, 375)
-  noCursor() = false
-  endGame()
+  sound2.play();
 }
