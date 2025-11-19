@@ -4,14 +4,16 @@ let obj_pos = [];
 let shapes = [];
 
 function preload() {
-  asset1 = loadImage("assets/bg.PNG");
-  asset2 = loadImage("assets/hand_close.PNG");
-  asset3 = loadImage("assets/hand_open.PNG");
-  asset4 = loadImage("assets/leaf01.PNG");
-  asset5 = loadImage("assets/leaf02.PNG");
-  asset6 = loadImage("assets/leaf03.PNG");
-  asset7 = loadImage("assets/leaf04.PNG");
-  asset8 = loadImage("assets/leaf05.PNG");
+  asset1 = loadImage("assets/images/bg.PNG");
+  asset2 = loadImage("assets/images/hand_close.PNG");
+  asset3 = loadImage("assets/images/hand_open.PNG");
+  asset4 = loadImage("assets/images/leaf01.PNG");
+  asset5 = loadImage("assets/images/leaf02.PNG");
+  asset6 = loadImage("assets/images/leaf03.PNG");
+  asset7 = loadImage("assets/images/leaf04.PNG");
+  asset8 = loadImage("assets/images/leaf05.PNG");
+
+  soundtrack = loadSound()
 }
 
 function setup() {
@@ -24,11 +26,13 @@ function setup() {
     const leafImg = getLeafAsset(obj.amt);
     shapes.push(new Draggable(obj.x, obj.y, 50, 50, leafImg)); //making the objects draggable was the most frustrating element to add in this game. Especially when i want the positions and images of the leafs to be random, it took me a long time to figure out 
   }
+  noCursor() //makes the cursor disappear
 }
 
 function draw() {
   background(220);
   image(asset1, 0, 0, 1000, 750); //table asset
+  //circle(500, 380, 590) // outer plate area
 
   for (let i = 0; i < shapes.length; i++) { //drawing objs
     const shape = shapes[i];
@@ -45,12 +49,12 @@ function draw() {
   fill(255);
   if (mouseIsPressed) {
     push();
-    translate(0, -85)
+    translate(-10, -80)
     image(asset2, mouseX, mouseY, 400, 500)
     pop();
   } else {
     push();
-    translate(0, -85)
+    translate(-10, -80)
     image(asset3, mouseX, mouseY, 400, 500)
     pop();
   } 

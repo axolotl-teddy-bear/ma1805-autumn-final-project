@@ -8,6 +8,8 @@ class Draggable {
     this.y = y;
     this.w = w;
     this.h = h;
+    this.initx = x;
+    this.inity = y;
     this.img = img;
     this.offsetX = 0;
     this.offsetY = 0;
@@ -24,9 +26,17 @@ class Draggable {
   
   update() {
     // Adjust location if being dragged
-    if (this.dragging) {
+    //change position ONLY if within limits
+    let newx = mouseX + this.offsetX;
+    let newy = mouseY + this.offsetY;
+    let pos_dist = dist(newx, newy, 500, 380) //if the distance from the centre is too far the position resets
+
+    if (this.dragging && pos_dist < 295) {
       this.x = mouseX + this.offsetX;
       this.y = mouseY + this.offsetY;
+    } else if (this.dragging) {
+      this.x = this.initx;
+      this.y = this.inity;
     }
   }
   
