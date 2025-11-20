@@ -29,17 +29,17 @@ function setup() {
     gen_obj(); // generate each object up to selected amount
   //When I was trying to make the objects draggablet, I found the process to be very confusing because my objects are stored in an array. to use the draggable() function (as seen in the ma1805 repository examples) i need an element that is an object.
     const obj = obj_pos[i];
-    const leafImg = getLeafAsset(obj.amt);
+    const leafImg = get_leaf(obj.amt);
     shapes.push(new Draggable(obj.x, obj.y, 50, 50, leafImg)); //making the objects draggable was the most frustrating element to add in this game. Especially when i want the positions and images of the leafs to be random, it took me a long time to figure out 
   }
   noCursor() //makes the cursor disappear
-  sound1.play();
+  //sound1.play();
 }
 
 function draw() {
   //BG MUSIC
   audio_sp = millis() / 70000
-  sound1.rate(1+audio_sp)
+  sound1.rate(1+audio_sp);
 
   background(220);
   image(asset1, 0, 0, 1000, 750); //table asset
@@ -83,7 +83,7 @@ function draw() {
     rect(30, 30, sec_left * 900/sec_limit, 30 );
     pop();
   } else if (sec_left < 0) {
-    checkGame()
+    checkGame();
   }
 }
 
@@ -108,19 +108,17 @@ function gen_obj() { //generates random position then adds then into the array
   obj_pos.push({ x: x_pos, y: y_pos, amt: obj_amt }); //makes the objs in the array draggables
 }
 
-function getLeafAsset(amount) {
-  switch (amount) {
-    case 1:
-      return asset4;
-    case 2:
-      return asset5;
-    case 3:
-      return asset6;
-    case 4:
-      return asset7;
-    case 5:
-    default:
-      return asset8;
+function get_leaf(amount) {
+  if (amount === 1) {
+    return asset4;
+  } else if (amount === 2) {
+    return asset5;
+  } else if (amount === 3) {
+    return asset6;
+  } else if (amount === 4) {
+    return asset7;
+  } else { // for amount 5 or any invalid input
+    return asset8;
   }
 }
 
@@ -128,18 +126,17 @@ function checkGame() {
   distInner = 205
   distOuter = 295
 
-  winning = obj_pos.every(obj => {
+  lose = obj_pos.every(obj => {
     // check if objs are outside of inner bowl range
     obj_range = dist(obj.x, obj.y, 500, 380)
-    return obj_range < 295 || obj_range > 205; 
+    return obj_range <= 205;
   });
 
-  if (winning) {
-    winGame();
-  }else {
+  if (lose == true) {
     failGame();
+  } else {
+    winGame();
   }
-
 }
 
 //ENDGAME
