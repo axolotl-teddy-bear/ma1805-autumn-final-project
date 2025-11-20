@@ -32,16 +32,17 @@ function setup() {
     shapes.push(new Draggable(obj.x, obj.y, 50, 50, leafImg)); //making the objects draggable was the most frustrating element to add in this game. Especially when i want the positions and images of the leafs to be random, it took me a long time to figure out 
   }
   noCursor() //makes the cursor disappear
-  sound1.play();
+  //sound1.play();
 }
 
 function draw() {
+  //BG MUSIC
   audio_sp = millis() / 70000
   sound1.rate(1+audio_sp)
 
   background(220);
   image(asset1, 0, 0, 1000, 750); //table asset
-  //circle(500, 380, 590) // outer plate area
+  //circle(500, 380, 580) // outer plate area
 
   //CILANTRO GEN
   for (let i = 0; i < shapes.length; i++) { //drawing objs
@@ -70,7 +71,7 @@ function draw() {
     pop();
   } 
 
-  //TIMER
+  //TIMER & GAMESTATE
   //reference link: https://editor.p5js.org/rainbowlazer/sketches/7UMxWVXyV
   sec_left = milis_limit - millis();
   if (sec_left >= 0) {
@@ -80,7 +81,7 @@ function draw() {
     rect(30, 30, sec_left * 900/sec_limit, 30 );
     pop();
   } else if (sec_left < 0) {
-    endGame()
+    failGame()
   }
 }
 
@@ -121,9 +122,13 @@ function getLeafAsset(amount) {
   }
 }
 
+function checkGame() {
+  distInner = (500, 370)
+}
+
 //ENDGAME
 let hasPlayedSound = false; 
-function endGame() {
+function failGame() {
   fill(127, 127)
   rect(0, 0, 1000, 750)
   fill(0)
@@ -132,9 +137,8 @@ function endGame() {
   
   text("You lose :(", 500, 375)
     if (hasPlayedSound === false) {
-    sound2.play(); // Play the sound
+    //sound2.play(); // Play the sound
     hasPlayedSound = true; // Set flag to true to prevent replay
   }
-
   frameRate(0)
 }
