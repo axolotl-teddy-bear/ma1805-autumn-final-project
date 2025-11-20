@@ -134,6 +134,5 @@ function endGame() {
     sound2.play(); // Play the sound
     hasPlayedSound = true; // Set flag to true to prevent replay
   }
-
   endGame()
 }
