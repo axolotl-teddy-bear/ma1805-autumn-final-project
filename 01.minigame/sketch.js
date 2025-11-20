@@ -19,6 +19,7 @@ function preload() {
 
   sound1 = loadSound("assets/audios/bg_music.wav");
   sound2 = loadSound("assets/audios/fail.mp3");
+  sound3 = loadSound("assets/audios/win.mp3");
 }
 
 function setup() {
@@ -32,7 +33,7 @@ function setup() {
     shapes.push(new Draggable(obj.x, obj.y, 50, 50, leafImg)); //making the objects draggable was the most frustrating element to add in this game. Especially when i want the positions and images of the leafs to be random, it took me a long time to figure out 
   }
   noCursor() //makes the cursor disappear
-  //sound1.play();
+  sound1.play();
 }
 
 function draw() {
@@ -139,7 +140,6 @@ function checkGame() {
     failGame();
   }
 
-  
 }
 
 //ENDGAME
@@ -152,6 +152,10 @@ function winGame() {
   textSize(100);
   
   text("You Win :D", 500, 375)
+  if (hasPlayedSound === false) {
+    sound3.play(); // Play the sound
+    hasPlayedSound = true; // Set flag to true to prevent replay
+  }
   frameRate(0)
 }
 
@@ -163,8 +167,8 @@ function failGame() {
   textSize(100);
   
   text("You lose :(", 500, 375)
-    if (hasPlayedSound === false) {
-    //sound2.play(); // Play the sound
+  if (hasPlayedSound === false) {
+    sound2.play(); // Play the sound
     hasPlayedSound = true; // Set flag to true to prevent replay
   }
   frameRate(0)
