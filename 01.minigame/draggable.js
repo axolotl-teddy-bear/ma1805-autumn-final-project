@@ -29,9 +29,9 @@ class Draggable {
     //change position ONLY if within limits
     let newx = mouseX + this.offsetX;
     let newy = mouseY + this.offsetY;
-    let pos_dist = dist(newx, newy, 500, 380) //if the distance from the centre is too far the position resets
+    let pos_dist = dist(newx, newy, 500, 370) //if the distance from the centre is too far the position resets
 
-    if (this.dragging && pos_dist < 295) {
+    if (this.dragging && pos_dist < 300) {
       this.x = mouseX + this.offsetX;
       this.y = mouseY + this.offsetY;
     } else if (this.dragging) {

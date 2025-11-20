@@ -3,9 +3,9 @@ let y_pos;
 let obj_pos = [];
 let shapes = [];
 
-let sec_limit = 22;
+let sec_limit = 25;
 let sec_left;
-let milis_limit = 22000; //1000milis is a second
+let milis_limit = 25000; //1000milis is a second
 
 function preload() {
   asset1 = loadImage("assets/images/bg.PNG");
@@ -23,7 +23,7 @@ function preload() {
 
 function setup() {
   createCanvas(1000, 750);
-  let obj_num = floor(random(15, 25));
+  let obj_num = floor(random(25, 35));
   for (let i = 0; i < obj_num; i++) {   //generate the amount of objs needed
     gen_obj(); // generate each object up to selected amount
   //When I was trying to make the objects draggablet, I found the process to be very confusing because my objects are stored in an array. to use the draggable() function (as seen in the ma1805 repository examples) i need an element that is an object.
@@ -36,7 +36,7 @@ function setup() {
 }
 
 function draw() {
-  audio_sp = millis() / 40000
+  audio_sp = millis() / 70000
   sound1.rate(1+audio_sp)
 
   background(220);
@@ -129,10 +129,12 @@ function endGame() {
   fill(0)
   textAlign(CENTER)
   textSize(100);
+  
   text("You lose :(", 500, 375)
     if (hasPlayedSound === false) {
     sound2.play(); // Play the sound
     hasPlayedSound = true; // Set flag to true to prevent replay
   }
-  endGame()
+
+  frameRate(0)
 }
