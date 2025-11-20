@@ -33,12 +33,12 @@ function setup() {
     shapes.push(new Draggable(obj.x, obj.y, 50, 50, leafImg)); //making the objects draggable was the most frustrating element to add in this game. Especially when i want the positions and images of the leafs to be random, it took me a long time to figure out 
   }
   noCursor() //makes the cursor disappear
-  //sound1.play();
+  sound1.play();
 }
 
 function draw() {
   //BG MUSIC
-  audio_sp = millis() / 70000
+  audio_sp = millis() / 70000;
   sound1.rate(1+audio_sp);
 
   background(220);
@@ -68,7 +68,7 @@ function draw() {
     pop();
   } else {
     push();
-    translate(-10, -80)
+    translate(-10, -80);
     image(asset3, mouseX, mouseY, 400, 500)
     pop();
   } 
