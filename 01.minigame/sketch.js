@@ -43,6 +43,7 @@ function draw() {
   background(220);
   image(asset1, 0, 0, 1000, 750); //table asset
   //circle(500, 380, 580) // outer plate area
+  //circle(500, 380, 410) //inner bowl area
 
   //CILANTRO GEN
   for (let i = 0; i < shapes.length; i++) { //drawing objs
@@ -81,7 +82,7 @@ function draw() {
     rect(30, 30, sec_left * 900/sec_limit, 30 );
     pop();
   } else if (sec_left < 0) {
-    failGame()
+    checkGame()
   }
 }
 
@@ -123,11 +124,37 @@ function getLeafAsset(amount) {
 }
 
 function checkGame() {
-  distInner = (500, 370)
+  distInner = 205
+  distOuter = 295
+
+  winning = obj_pos.every(obj => {
+    // check if objs are outside of inner bowl range
+    obj_range = dist(obj.x, obj.y, 500, 380)
+    return obj_range < 295 || obj_range > 205; 
+  });
+
+  if (winning) {
+    winGame();
+  }else {
+    failGame();
+  }
+
+  
 }
 
 //ENDGAME
 let hasPlayedSound = false; 
+function winGame() {
+  fill(0, 200, 50, 127)
+  rect(0, 0, 1000, 750)
+  fill(0)
+  textAlign(CENTER)
+  textSize(100);
+  
+  text("You Win :D", 500, 375)
+  frameRate(0)
+}
+
 function failGame() {
   fill(127, 127)
   rect(0, 0, 1000, 750)
