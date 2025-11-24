@@ -153,7 +153,7 @@ function winGame() {
     sound3.play(); // Play the sound
     hasPlayedSound = true; // Set flag to true to prevent replay
   }
-  frameRate(0)
+  frameRate(0);
 }
 
 function failGame() {
