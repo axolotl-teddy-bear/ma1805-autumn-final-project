@@ -9,3 +9,11 @@ Minigame no. 3: This minigame is based on the idea of Chinese family trees and h
 Together, these 3 mingames would be mashed together into a single experience. Whenever you successfully complete a game, a satisfaction meter goes up. When that meter is full,you win the game. 
 
 P.S.: The idea I had was a bit ambitious. And, the mechanics I wanted to include took a lot longer than I anticipated to figure out. Due to personal reasons, I was not able to fulfill most of my plans regarding this project. However, minigame 01, which is the one I have completed, is still interesting in its own respects. If I had more resources to work on this project, I would probably hone in on the first mingame. I would make more dishes and "unpleasant food" assets. I could make the player cycle through the dishes and repeat the process of picking out the unwanted objects until a certain score is achieved or until the player naturally fails to keep up with the increasing difficulty. 
+
+ASSET LINKS:
+'you win' cheering sound effect: https://www.youtube.com/watch?v=9bnUWuAO0oU
+
+'you lose' sound effect: https://www.youtube.com/watch?v=2qP_NY5c5II
+
+
+
