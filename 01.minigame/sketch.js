@@ -147,6 +147,7 @@ function checkGame() {
 
 //ENDGAME
 let hasPlayedSound = false; 
+
 function winGame() {
   fill(0, 200, 50, 127)
   rect(0, 0, 1000, 750)
