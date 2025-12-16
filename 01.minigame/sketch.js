@@ -8,6 +8,7 @@ let sec_left;
 let milis_limit = 25000; //1000milis is a second
 
 function preload() {
+  //the image assests below are all made by me 
   asset1 = loadImage("assets/images/bg.PNG");
   asset2 = loadImage("assets/images/hand_close.PNG");
   asset3 = loadImage("assets/images/hand_open.PNG");
@@ -17,6 +18,9 @@ function preload() {
   asset7 = loadImage("assets/images/leaf04.PNG");
   asset8 = loadImage("assets/images/leaf05.PNG");
 
+  //audio assets are loyalty-free and credited in the README.md file
+  //through you (Dr Tom Keene) did propose the idea of making my own music and sound effects, my skills are extremely limited. the process of trying to make sound assets was frustrating, and eventually I decided to stick with matieral found on the internet. 
+  //however, this might be somehing I can explore in future projects
   sound1 = loadSound("assets/audios/bg_music.wav");
   sound2 = loadSound("assets/audios/fail.mp3");
   sound3 = loadSound("assets/audios/win.mp3");
@@ -27,7 +31,9 @@ function setup() {
   let obj_num = floor(random(15, 25));
   for (let i = 0; i < obj_num; i++) {   //generate the amount of objs needed
     gen_obj(); // generate each object up to selected amount
-  //When I was trying to make the objects draggablet, I found the process to be very confusing because my objects are stored in an array. to use the draggable() function (as seen in the ma1805 repository examples) i need an element that is an object.
+  //When I was trying to make the objects draggable, I found the process to be very confusing because my objects are stored in an array. to use the draggable() function (as seen in the ma1805 repository examples) i need an element that is an object.
+  //the solution I found was to loop through the obj_pos array, get the position and amount of each object, then create a new draggable object for each one. 
+  //this was by far the most difficult part of coding to figure out. 
     const obj = obj_pos[i];
     const leafImg = get_leaf(obj.amt);
     shapes.push(new Draggable(obj.x, obj.y, 50, 50, leafImg)); //making the objects draggable was the most frustrating element to add in this game. Especially when i want the positions and images of the leafs to be random, it took me a long time to figure out 
