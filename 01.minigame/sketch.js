@@ -24,7 +24,7 @@ function preload() {
 
 function setup() {
   createCanvas(1000, 750);
-  let obj_num = floor(random(25, 35));
+  let obj_num = floor(random(15, 25));
   for (let i = 0; i < obj_num; i++) {   //generate the amount of objs needed
     gen_obj(); // generate each object up to selected amount
   //When I was trying to make the objects draggablet, I found the process to be very confusing because my objects are stored in an array. to use the draggable() function (as seen in the ma1805 repository examples) i need an element that is an object.
@@ -126,16 +126,16 @@ function checkGame() {
   distInner = 205
   distOuter = 295
 
-  lose = obj_pos.every(obj => {
+  win = obj_pos.every(obj => {
     // check if objs are outside of inner bowl range
     obj_range = dist(obj.x, obj.y, 500, 380)
-    return obj_range <= 205;
+    return obj_range > 180;
   });
 
-  if (lose == true) {
-    failGame();
-  } else {
+  if (win) {
     winGame();
+  } else {
+    failGame();
   }
 }
 
@@ -153,7 +153,8 @@ function winGame() {
     sound3.play(); // Play the sound
     hasPlayedSound = true; // Set to true so it doesnt replay
   }
-  frameRate(0)
+  frameRate(0);
+  hasPlayedSound = false;
 }
 
 function failGame() {
@@ -169,4 +170,5 @@ function failGame() {
     hasPlayedSound = true; 
   }
   frameRate(0)
+  hasPlayedSound = false
 }
