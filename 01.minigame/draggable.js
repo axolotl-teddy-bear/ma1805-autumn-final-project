@@ -29,7 +29,7 @@ class Draggable {
     //change position ONLY if within limits
     let newx = mouseX + this.offsetX + 25;
     let newy = mouseY + this.offsetY + 25;
-    let pos_dist = dist(newx, newy, 500, 375) //if the distance from the centre is too far the position resets
+    let pos_dist = dist(newx, newy, 500, 375) //if the distance from the centre is too far the position, it resets
 
     if (this.dragging && pos_dist < 295) {
       this.x = mouseX + this.offsetX;
@@ -46,10 +46,10 @@ class Draggable {
   }
   
   pressed() {
-    // Did I click on the rectangle?
+    // Did I click on the object?
     if (mouseX > this.x && mouseX < this.x + this.w && mouseY > this.y && mouseY < this.y + this.h) {
       this.dragging = true;
-      // If so, keep track of relative location of click to corner of rectangle
+      // If so, keep track of relative location of click to corner of object
       this.offsetX = this.x - mouseX;
       this.offsetY = this.y - mouseY;
     }

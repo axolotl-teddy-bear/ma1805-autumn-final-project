@@ -108,7 +108,7 @@ function gen_obj() { //generates random position then adds then into the array
   obj_pos.push({ x: x_pos, y: y_pos, amt: obj_amt }); //makes the objs in the array draggables
 }
 
-function get_leaf(amount) {
+function get_leaf(amount) { //returns leaf images
   if (amount === 1) {
     return asset4;
   } else if (amount === 2) {
@@ -117,7 +117,7 @@ function get_leaf(amount) {
     return asset6;
   } else if (amount === 4) {
     return asset7;
-  } else { // for amount 5 or any invalid input
+  } else { 
     return asset8;
   }
 }
@@ -151,7 +151,7 @@ function winGame() {
   text("You Win :D", 500, 375)
   if (hasPlayedSound === false) {
     sound3.play(); // Play the sound
-    hasPlayedSound = true; // Set flag to true to prevent replay
+    hasPlayedSound = true; // Set to true so it doesnt replay
   }
   frameRate(0)
 }
@@ -165,8 +165,8 @@ function failGame() {
   
   text("You lose :(", 500, 375)
   if (hasPlayedSound === false) {
-    sound2.play(); // Play the sound
-    hasPlayedSound = true; // Set flag to true to prevent replay
+    sound2.play(); 
+    hasPlayedSound = true; 
   }
   frameRate(0)
 }
